@@ -22,8 +22,8 @@ quiz_list = [
             "c": "8区域",
             "d": "10区域"
         },
-        "answer": "c",
-        "explanation": "P型2級受信機は最大8回線（8警戒区域）まで対応可能である。"
+        "answer": "b",
+        "explanation": "P型2級受信機は最大5回線（5警戒区域）まで対応可能である。"
     }
 ]
 
@@ -63,4 +63,5 @@ if st.session_state.answered:
     if st.button("次の問題へ"):
         st.session_state.quiz = random.choice(quiz_list)
         st.session_state.answered = False
-        st.experimental_rerun()
+    
+
