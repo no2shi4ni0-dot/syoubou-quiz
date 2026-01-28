@@ -1,31 +1,7 @@
 import streamlit as st
 import random
+from quiz_data import quiz_list
 
-# ===== 問題データ（ここを自由に編集） =====
-quiz_list = [
-    {
-        "question": "自動火災報知設備において、階段の警戒区域の扱いとして正しいものはどれか。",
-        "choices": {
-            "a": "各階ごとに警戒区域とする",
-            "b": "居室と同一警戒区域に含める",
-            "c": "縦に連続する1警戒区域として扱う",
-            "d": "警戒区域に含めない"
-        },
-        "answer": "c",
-        "explanation": "階段は縦に連続した空間であるため、原則として1つの警戒区域として扱う。"
-    },
-    {
-        "question": "P型2級受信機で扱える警戒区域数として適切なものはどれか。",
-        "choices": {
-            "a": "3区域",
-            "b": "5区域",
-            "c": "8区域",
-            "d": "10区域"
-        },
-        "answer": "b",
-        "explanation": "P型2級受信機は最大5回線（5警戒区域）まで対応可能である。"
-    }
-]
 
 # ===== セッション初期化 =====
 if "quiz" not in st.session_state:
@@ -68,6 +44,7 @@ if st.session_state.answered:
         st.rerun()
 
     
+
 
 
 
