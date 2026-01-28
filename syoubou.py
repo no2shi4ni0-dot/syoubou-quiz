@@ -49,7 +49,7 @@ choice = st.radio(
 # ===== 解答ボタン =====
 if st.button("解答する"):
     st.session_state.answered = True
-
+ 
 # ===== 結果表示 =====
 if st.session_state.answered:
     if choice == quiz["answer"]:
@@ -60,8 +60,12 @@ if st.session_state.answered:
     st.write("### 解説")
     st.write(quiz["explanation"])
 
-    if st.button("次の問題へ"):
-        st.session_state.quiz = random.choice(quiz_list)
+     if st.button("次の問題へ"):
+        st.session_state.quiz = random.choice(
+            [q for q in quiz_list if q != st.session_state.quiz]
+        )
         st.session_state.answered = False
+
     
+
 
