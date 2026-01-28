@@ -61,11 +61,12 @@ if st.session_state.answered:
     st.write(quiz["explanation"])
 
      if st.button("次の問題へ"):
-        st.session_state.quiz = random.choice(
+         st.session_state.quiz = random.choice(
             [q for q in quiz_list if q != st.session_state.quiz]
-        )
-        st.session_state.answered = False
+         )
+         st.session_state.answered = False
 
     
+
 
 
