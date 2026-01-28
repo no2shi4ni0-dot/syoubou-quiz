@@ -65,9 +65,10 @@ if st.session_state.answered:
             [q for q in quiz_list if q != st.session_state.quiz]
         )
         st.session_state.answered = False
-        st.experimental_rerun()
+        st.rerun()
 
     
+
 
 
 
