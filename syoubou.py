@@ -38,7 +38,8 @@ if st.session_state.answered:
 
     st.write("### 解説")
     st.write(quiz["explanation"])
-    if st.button("次の問題へ"):
+    
+if st.button("次の問題へ"):
     remaining_quizzes = [
         q for q in quiz_list if q not in st.session_state.used_quizzes
     ]
@@ -54,6 +55,7 @@ if st.session_state.answered:
 
 
     
+
 
 
 
