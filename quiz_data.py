@@ -32,6 +32,7 @@ quiz_list = [
     },
     "answer": "d",
     "explanation": "小学校は防火対象物でない"
-　　}
+　  }
 ]
+
 
