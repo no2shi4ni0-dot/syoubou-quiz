@@ -5,8 +5,11 @@ from quiz_data import quiz_list
 
 # ===== セッション初期化 =====
 if "quiz" not in st.session_state:
+    st.session_state.used_quizzes = []
     st.session_state.quiz = random.choice(quiz_list)
+    st.session_state.used_quizzes.append(st.session_state.quiz)
     st.session_state.answered = False
+
 
 quiz = st.session_state.quiz
 
@@ -37,13 +40,22 @@ if st.session_state.answered:
     st.write(quiz["explanation"])
 
     if st.button("次の問題へ"):
-        st.session_state.quiz = random.choice(
-            [q for q in quiz_list if q != st.session_state.quiz]
-        )
+    remaining_quizzes = [
+        q for q in quiz_list if q not in st.session_state.used_quizzes
+    ]
+
+    if remaining_quizzes:
+        next_quiz = random.choice(remaining_quizzes)
+        st.session_state.quiz = next_quiz
+        st.session_state.used_quizzes.append(next_quiz)
         st.session_state.answered = False
         st.rerun()
+    else:
+        st.success("🎉 全ての問題を解き終わりました！")
+
 
     
+
 
 
 
