@@ -12,6 +12,21 @@ if "quiz" not in st.session_state:
     st.session_state.correct_count = 0
     st.session_state.total_answered = 0
 
+# ===== session_state 初期化 =====
+if "total_answered" not in st.session_state:
+    st.session_state.total_answered = 0
+
+if "correct_count" not in st.session_state:
+    st.session_state.correct_count = 0
+
+if "used_quizzes" not in st.session_state:
+    st.session_state.used_quizzes = []
+
+if "quiz" not in st.session_state:
+    st.session_state.quiz = random.choice(quiz_list)
+    st.session_state.used_quizzes.append(st.session_state.quiz)
+    st.session_state.answered = False
+
 
 
 quiz = st.session_state.quiz
@@ -70,6 +85,7 @@ if st.button("次の問題へ"):
 
 
     
+
 
 
 
