@@ -39,7 +39,7 @@ if st.session_state.total_answered > 0:
     st.write(f"### 正答率：{rate:.1%} ({st.session_state.correct_count}/{st.session_state.total_answered})")
 progress = len(st.session_state.used_quizzes) / len(quiz_list)
 st.progress(progress)
-st.write(f"{len(st.session_state.used_quizzes)} / {len(quiz_list)} 問 完了")
+st.write(f"{len(st.session_state.used_quizzes)} / {len(quiz_list)} 問")
 
 
 st.write("### 問題")
@@ -85,6 +85,7 @@ if st.button("次の問題へ"):
 
 
     
+
 
 
 
