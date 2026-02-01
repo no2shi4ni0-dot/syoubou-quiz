@@ -9,12 +9,23 @@ if "quiz" not in st.session_state:
     st.session_state.quiz = random.choice(quiz_list)
     st.session_state.used_quizzes.append(st.session_state.quiz)
     st.session_state.answered = False
+    st.session_state.correct_count = 0
+    st.session_state.total_answered = 0
+
 
 
 quiz = st.session_state.quiz
 
 # ===== 画面表示 =====
 st.title("🔥 消防設備士 過去問道場")
+
+if st.session_state.total_answered > 0:
+    rate = st.session_state.correct_count / st.session_state.total_answered
+    st.write(f"### 正答率：{rate:.1%} ({st.session_state.correct_count}/{st.session_state.total_answered})")
+progress = len(st.session_state.used_quizzes) / len(quiz_list)
+st.progress(progress)
+st.write(f"{len(st.session_state.used_quizzes)} / {len(quiz_list)} 問 完了")
+
 
 st.write("### 問題")
 st.write(quiz["question"])
@@ -28,6 +39,10 @@ choice = st.radio(
 # ===== 解答ボタン =====
 if st.button("解答する"):
     st.session_state.answered = True
+    st.session_state.total_answered += 1
+
+    if choice == quiz["answer"]:
+        st.session_state.correct_count += 1
  
 # ===== 結果表示 =====
 if st.session_state.answered:
@@ -55,6 +70,7 @@ if st.button("次の問題へ"):
 
 
     
+
 
 
 
