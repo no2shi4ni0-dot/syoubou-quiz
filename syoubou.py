@@ -74,11 +74,11 @@ if st.session_state.answered:
         q for q in quiz_list if q not in st.session_state.used_quizzes
         ]
         if remaining_quizzes:
-        next_quiz = random.choice(remaining_quizzes)
-        st.session_state.quiz = next_quiz
-        st.session_state.used_quizzes.append(next_quiz)
-        st.session_state.answered = False
-        st.rerun()
+            next_quiz = random.choice(remaining_quizzes)
+            st.session_state.quiz = next_quiz
+            st.session_state.used_quizzes.append(next_quiz)
+            st.session_state.answered = False
+            st.rerun()
         else:
             st.success("🎉 全ての問題を解き終わりました！")
     
@@ -86,6 +86,7 @@ if st.session_state.answered:
 
 
     
+
 
 
 
