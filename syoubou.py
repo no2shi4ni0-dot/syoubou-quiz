@@ -52,13 +52,14 @@ choice = st.radio(
 )
 
 # ===== 解答ボタン =====
-if st.button("解答する"):
-    st.session_state.answered = True
-    st.session_state.total_answered += 1
+if not st.session_state.answered:
+    if st.button("解答する"):
+        st.session_state.answered = True
+        st.session_state.total_answered += 1
 
-    if choice == quiz["answer"]:
-        st.session_state.correct_count += 1
- 
+        if choice == quiz["answer"]:
+            st.session_state.correct_count += 1
+
 # ===== 結果表示 =====
 if st.session_state.answered:
     if choice == quiz["answer"]:
@@ -86,6 +87,7 @@ if st.session_state.answered:
 
 
     
+
 
 
 
