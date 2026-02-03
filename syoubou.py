@@ -56,7 +56,7 @@ st.write(quiz["question"])
 maru = ["①", "②", "③", "④", "⑤"]
 
 labels = {
-    i: f"{maru[i]} {text}"
+    i: f"{maru[i]}：{text}"
     for i, (_, text) in enumerate(st.session_state.shuffled_items)
 }
 
@@ -111,6 +111,7 @@ if st.session_state.answered:
             st.rerun()
         else:
             st.success("🎉 全問終了！")
+
 
 
 
