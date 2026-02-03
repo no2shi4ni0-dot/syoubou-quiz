@@ -87,7 +87,12 @@ if st.session_state.answered:
     if selected_key == quiz["answer"]:
         st.success("⭕ 正解！")
     else:
-        st.error(f"❌ 不正解（正解：{quiz['answer']}）")
+        # 正解キーが何番目か探す
+        correct_index = next(
+            i for i, (key, _) in enumerate(st.session_state.shuffled_items)
+            if key == quiz["answer"]
+        )
+        st.error(f"❌ 不正解（正解：{maru[correct_index]}）")
 
     st.write("### 解説")
     st.write(quiz["explanation"])
@@ -111,6 +116,7 @@ if st.session_state.answered:
             st.rerun()
         else:
             st.success("🎉 全問終了！")
+
 
 
 
