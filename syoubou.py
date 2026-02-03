@@ -56,10 +56,9 @@ st.write(quiz["question"])
 
 choice = st.radio(
     "選択肢を選んでください",
-    [key for key, _ in st.session_state.shuffled_choices],
-    format_func=lambda x: f"{x}：{dict(st.session_state.shuffled_choices)[x]}"
+    list(st.session_state.shuffled_choices.keys()),
+    format_func=lambda x: f"{x}：{st.session_state.shuffled_choices[x]}"
 )
-
 
 # ===== 解答ボタン =====
 if not st.session_state.answered:
@@ -98,6 +97,7 @@ if st.session_state.answered:
             st.rerun()
         else:
             st.success("🎉 全ての問題を解き終わりました！")
+
 
 
 
