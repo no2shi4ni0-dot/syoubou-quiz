@@ -30,11 +30,14 @@ if "quiz" not in st.session_state:
 
 
 quiz = st.session_state.quiz
-# ===== 選択肢シャッフル初期化 =====
+# ===== 選択肢シャッフル（キーは固定）=====
 if "shuffled_choices" not in st.session_state:
-    items = list(quiz["choices"].items())
-    random.shuffle(items)
-    st.session_state.shuffled_choices = items
+    keys = list(quiz["choices"].keys())          # ["a", "b", "c", "d"]
+    values = list(quiz["choices"].values())      # 選択肢文
+    random.shuffle(values)
+
+    st.session_state.shuffled_choices = dict(zip(keys, values))
+
 
 
 # ===== 画面表示 =====
@@ -86,14 +89,16 @@ if st.session_state.answered:
             st.session_state.quiz = next_quiz
             st.session_state.used_quizzes.append(next_quiz)
             st.session_state.answered = False
-        # 🔥 必ず再生成
-            items = list(next_quiz["choices"].items())
-            random.shuffle(items)
-            st.session_state.shuffled_choices = items
+            # 次の問題へ
+            keys = list(next_quiz["choices"].keys())
+            values = list(next_quiz["choices"].values())
+            random.shuffle(values)
+            st.session_state.shuffled_choices = dict(zip(keys, values))
 
             st.rerun()
         else:
             st.success("🎉 全ての問題を解き終わりました！")
+
 
 
 
