@@ -47,9 +47,10 @@ st.write(quiz["question"])
 
 choice = st.radio(
     "選択肢を選んでください",
-    list(quiz["choices"].keys()),
-    format_func=lambda x: f"{x}：{quiz['choices'][x]}"
+    [key for key, _ in st.session_state.shuffled_choices],
+    format_func=lambda x: f"{x}：{dict(st.session_state.shuffled_choices)[x]}"
 )
+
 
 # ===== 解答ボタン =====
 if not st.session_state.answered:
@@ -71,22 +72,30 @@ if st.session_state.answered:
     st.write(quiz["explanation"])
 
     if st.button("次の問題へ"):
-        remaining_quizzes = [
-        q for q in quiz_list if q not in st.session_state.used_quizzes
-        ]
-        if remaining_quizzes:
-            next_quiz = random.choice(remaining_quizzes)
-            st.session_state.quiz = next_quiz
-            st.session_state.used_quizzes.append(next_quiz)
-            st.session_state.answered = False
-            st.rerun()
-        else:
-            st.success("🎉 全ての問題を解き終わりました！")
+       remaining_quizzes = [
+           q for q in quiz_list if q not in st.session_state.used_quizzes
+       ]
+
+       if remaining_quizzes:
+           next_quiz = random.choice(remaining_quizzes)
+           st.session_state.quiz = next_quiz
+           st.session_state.used_quizzes.append(next_quiz)
+           st.session_state.answered = False
+
+           items = list(next_quiz["choices"].items())
+           random.shuffle(items)
+           st.session_state.shuffled_choices = items
+
+           st.rerun()
+       else:
+           st.success("🎉 全ての問題を解き終わりました！")
+
     
 
 
 
     
+
 
 
 
