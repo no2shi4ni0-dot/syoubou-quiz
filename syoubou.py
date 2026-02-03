@@ -53,10 +53,13 @@ st.write(f"{len(st.session_state.used_quizzes)} / {len(quiz_list)} 問")
 st.write("### 問題")
 st.write(quiz["question"])
 
+maru = ["①", "②", "③", "④", "⑤"]
+
 labels = {
-    i: f"{i+1}：{text}"
+    i: f"{maru[i]} {text}"
     for i, (_, text) in enumerate(st.session_state.shuffled_items)
 }
+
 
 selected_index = st.radio(
     "選択肢を選んでください",
@@ -108,6 +111,7 @@ if st.session_state.answered:
             st.rerun()
         else:
             st.success("🎉 全問終了！")
+
 
 
 
