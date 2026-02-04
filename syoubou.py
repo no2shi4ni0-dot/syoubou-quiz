@@ -116,7 +116,9 @@ if st.session_state.answered:
 
             st.rerun()
         else:
-            st.success("🎉 全問終了！")
+            st.success("🎉 全問解き終わりました！")
+            st.write(f"最終正答率：{rate:.1%}")
+
 
 
 
