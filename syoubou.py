@@ -46,6 +46,7 @@ if st.session_state.total_answered > 0:
     rate = st.session_state.correct_count / st.session_state.total_answered
     st.write(f"### 正答率：{rate:.1%} ({st.session_state.correct_count}/{st.session_state.total_answered})")
 progress = len(st.session_state.used_quizzes) / len(quiz_list)
+progress = min(progress, 1.0)
 st.progress(progress)
 st.write(f"{len(st.session_state.used_quizzes)} / {len(quiz_list)} 問")
 
@@ -116,6 +117,7 @@ if st.session_state.answered:
             st.rerun()
         else:
             st.success("🎉 全問終了！")
+
 
 
 
